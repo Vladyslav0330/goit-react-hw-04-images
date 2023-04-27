@@ -9,7 +9,7 @@ para familiarizarse con las funciones opcionales y configurarlas.
 
 Используй этот репозиторий организации GoIT как шаблон для создания репозитория
 своего проекта. Для этого нажми на кнопку `«Use this template»` и выбери опцию
-`«Create a new repository»`, как показано на изображении.
+`«Create a new repository»`, как показано на изображении
 
 ![Creating repo from a template step 1](./assets/template-step-1.png)
 

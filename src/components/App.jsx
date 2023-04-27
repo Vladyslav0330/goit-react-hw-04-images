@@ -31,17 +31,20 @@ export const App = () => {
           }
 
           // const images = result.hits(
-          //   ({ id, tags, webformatURL, largeImageURL }) => ({
+          //   ({ pageURL, id, previewURL, tags, largeImageURL }) => ({
+          //     pageURL,
           //     id,
+          //     previewURL,
           //     tags,
-          //     webformatURL,
           //     largeImageURL,
           //   })
           // );
+
           setSearchResult(prevSearchResult => [
             ...prevSearchResult,
             ...result.hits,
           ]);
+          console.log(result.hits);
         })
         .catch(error => {
           setError(error);

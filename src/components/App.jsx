@@ -30,15 +30,18 @@ export const App = () => {
             );
           }
 
-          const images = result.hits(
-            ({ id, tags, webformatURL, largeImageURL }) => ({
-              id,
-              tags,
-              webformatURL,
-              largeImageURL,
-            })
-          );
-          setSearchResult(prevSearchResult => [...prevSearchResult, ...images]);
+          // const images = result.hits(
+          //   ({ id, tags, webformatURL, largeImageURL }) => ({
+          //     id,
+          //     tags,
+          //     webformatURL,
+          //     largeImageURL,
+          //   })
+          // );
+          setSearchResult(prevSearchResult => [
+            ...prevSearchResult,
+            ...result.hits,
+          ]);
         })
         .catch(error => {
           setError(error);

@@ -15,6 +15,8 @@ export const App = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!searchQuery) return;
+
     const fetchHandler = () => {
       setIsLoading(true);
       fetchImages(searchQuery, page)
@@ -27,10 +29,16 @@ export const App = () => {
               { theme: 'dark' }
             );
           }
-          setSearchResult(prevSearchResult => [
-            ...prevSearchResult,
-            ...result.hits,
-          ]);
+
+          const images = result.hits(
+            ({ id, tags, webformatURL, largeImageURL }) => ({
+              id,
+              tags,
+              webformatURL,
+              largeImageURL,
+            })
+          );
+          setSearchResult(prevSearchResult => [...prevSearchResult, ...images]);
         })
         .catch(error => {
           setError(error);
@@ -40,8 +48,13 @@ export const App = () => {
         });
     };
 
-    searchQuery !== '' && fetchHandler();
+    fetchHandler();
   }, [searchQuery, page]);
+
+  useEffect(() => {
+    if (!error) return;
+    toast.error(error);
+  }, [error]);
 
   const onLoadMoreClick = () => {
     setPage(prevPage => prevPage + 1);
